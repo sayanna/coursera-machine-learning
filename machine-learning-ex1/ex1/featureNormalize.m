@@ -26,13 +26,30 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
+m = size(X,1);
+n = size(X,2);
+s = sum(X);
+mu = s/m;
+M = mu;
 
+for i=1:m-1
+    M = [M; mu];
+end;
 
+Y = X-M;
+Z = Y.^2;
+sd = sum(Z);
+sigma = sd/m;
 
+sinv = zeros(1,n);
+sinv = sigma.^-1;
+SD = sinv;
 
+for i=1:m-1
+    SD = [SD; sinv];
+end;
 
-
-
+X_norm = Y.*SD;
 
 % ============================================================
 
